@@ -8,7 +8,7 @@ metadata:
 spec:
   project: mini-astra
   source:
-    repoURL: 'http://10.0.0.12:8080'
+    repoURL: 'https://github.com/mini-astra/mini-astra.git'
     targetRevision: HEAD
     path: infrastructure
   destination:
