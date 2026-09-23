@@ -165,189 +165,7 @@ items:
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2026-09-22T22:00:00Z"
-    generateName: cluster-backup-to-git-29835240-
-    generation: 1
-    labels:
-      batch.kubernetes.io/controller-uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-      batch.kubernetes.io/job-name: cluster-backup-to-git-29835240
-      controller-uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-      job-name: cluster-backup-to-git-29835240
-    name: cluster-backup-to-git-29835240-r9rdk
-    namespace: ai-layer
-    ownerReferences:
-    - apiVersion: batch/v1
-      blockOwnerDeletion: true
-      controller: true
-      kind: Job
-      name: cluster-backup-to-git-29835240
-      uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-    resourceVersion: "108981"
-    uid: b1eb2d69-66e3-4ff2-b2f7-b1b33b7645e5
-  spec:
-    containers:
-    - command:
-      - /bin/sh
-      - /scripts/backup.sh
-      env:
-      - name: GH_USER
-        valueFrom:
-          secretKeyRef:
-            key: username
-            name: github-creds
-      - name: GH_TOKEN
-        valueFrom:
-          secretKeyRef:
-            key: token
-            name: github-creds
-      - name: GH_REPO
-        valueFrom:
-          secretKeyRef:
-            key: repo
-            name: github-creds
-      image: alpine/k8s:1.30.0
-      imagePullPolicy: IfNotPresent
-      name: backup
-      resources: {}
-      terminationMessagePath: /dev/termination-log
-      terminationMessagePolicy: File
-      volumeMounts:
-      - mountPath: /scripts
-        name: script-vol
-      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-4d72n
-        readOnly: true
-    dnsPolicy: ClusterFirstWithHostNet
-    enableServiceLinks: true
-    hostNetwork: true
-    nodeName: nucboxk12
-    preemptionPolicy: PreemptLowerPriority
-    priority: 0
-    restartPolicy: OnFailure
-    schedulerName: default-scheduler
-    securityContext: {}
-    serviceAccount: backup-sa
-    serviceAccountName: backup-sa
-    terminationGracePeriodSeconds: 30
-    tolerations:
-    - effect: NoExecute
-      key: node.kubernetes.io/not-ready
-      operator: Exists
-      tolerationSeconds: 300
-    - effect: NoExecute
-      key: node.kubernetes.io/unreachable
-      operator: Exists
-      tolerationSeconds: 300
-    volumes:
-    - configMap:
-        defaultMode: 511
-        name: backup-script-cm
-      name: script-vol
-    - name: kube-api-access-4d72n
-      projected:
-        defaultMode: 420
-        sources:
-        - serviceAccountToken:
-            expirationSeconds: 3607
-            path: token
-        - configMap:
-            items:
-            - key: ca.crt
-              path: ca.crt
-            name: kube-root-ca.crt
-        - downwardAPI:
-            items:
-            - fieldRef:
-                apiVersion: v1
-                fieldPath: metadata.namespace
-              path: namespace
-  status:
-    conditions:
-    - lastProbeTime: null
-      lastTransitionTime: "2026-09-22T22:00:17Z"
-      observedGeneration: 1
-      status: "False"
-      type: PodReadyToStartContainers
-    - lastProbeTime: null
-      lastTransitionTime: "2026-09-22T22:00:00Z"
-      observedGeneration: 1
-      reason: PodCompleted
-      status: "True"
-      type: Initialized
-    - lastProbeTime: null
-      lastTransitionTime: "2026-09-22T22:00:16Z"
-      observedGeneration: 1
-      reason: PodCompleted
-      status: "False"
-      type: Ready
-    - lastProbeTime: null
-      lastTransitionTime: "2026-09-22T22:00:16Z"
-      observedGeneration: 1
-      reason: PodCompleted
-      status: "False"
-      type: ContainersReady
-    - lastProbeTime: null
-      lastTransitionTime: "2026-09-22T22:00:00Z"
-      observedGeneration: 1
-      status: "True"
-      type: PodScheduled
-    containerStatuses:
-    - containerID: containerd://9e6291613462ffd2fd53785b69fd2328e3e7ec4bdd1904dbc322a421bf7de07e
-      image: docker.io/alpine/k8s:1.30.0
-      imageID: docker.io/alpine/k8s@sha256:bd01dae02676ce4cab62fc744e43443eee5bf660054e94d3496d23bfc35d384e
-      lastState: {}
-      name: backup
-      ready: false
-      resources: {}
-      restartCount: 0
-      started: false
-      state:
-        terminated:
-          containerID: containerd://9e6291613462ffd2fd53785b69fd2328e3e7ec4bdd1904dbc322a421bf7de07e
-          exitCode: 0
-          finishedAt: "2026-09-22T22:00:16Z"
-          reason: Completed
-          startedAt: "2026-09-22T22:00:01Z"
-      user:
-        linux:
-          gid: 0
-          supplementalGroups:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 6
-          - 10
-          - 11
-          - 20
-          - 26
-          - 27
-          uid: 0
-      volumeMounts:
-      - mountPath: /scripts
-        name: script-vol
-      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-4d72n
-        readOnly: true
-        recursiveReadOnly: Disabled
-    hostIP: 172.25.152.90
-    hostIPs:
-    - ip: 172.25.152.90
-    observedGeneration: 1
-    phase: Succeeded
-    podIP: 172.25.152.90
-    podIPs:
-    - ip: 172.25.152.90
-    qosClass: BestEffort
-    resources: {}
-    startTime: "2026-09-22T22:00:00Z"
-- apiVersion: v1
-  kind: Pod
-  metadata:
     creationTimestamp: "2026-09-23T04:00:00Z"
-    finalizers:
-    - batch.kubernetes.io/job-tracking
     generateName: cluster-backup-to-git-29835600-
     generation: 1
     labels:
@@ -364,7 +182,7 @@ items:
       kind: Job
       name: cluster-backup-to-git-29835600
       uid: 09fd729d-3426-47b9-a8fe-b755f919f012
-    resourceVersion: "144861"
+    resourceVersion: "144895"
     uid: 32a82725-c577-4a38-a440-4f48bec3f08f
   spec:
     containers:
@@ -446,24 +264,27 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2026-09-23T04:00:01Z"
+      lastTransitionTime: "2026-09-23T04:00:17Z"
       observedGeneration: 1
-      status: "True"
+      status: "False"
       type: PodReadyToStartContainers
     - lastProbeTime: null
       lastTransitionTime: "2026-09-23T04:00:01Z"
       observedGeneration: 1
+      reason: PodCompleted
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2026-09-23T04:00:02Z"
+      lastTransitionTime: "2026-09-23T04:00:16Z"
       observedGeneration: 1
-      status: "True"
+      reason: PodCompleted
+      status: "False"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2026-09-23T04:00:02Z"
+      lastTransitionTime: "2026-09-23T04:00:16Z"
       observedGeneration: 1
-      status: "True"
+      reason: PodCompleted
+      status: "False"
       type: ContainersReady
     - lastProbeTime: null
       lastTransitionTime: "2026-09-23T04:00:00Z"
@@ -476,12 +297,16 @@ items:
       imageID: docker.io/alpine/k8s@sha256:bd01dae02676ce4cab62fc744e43443eee5bf660054e94d3496d23bfc35d384e
       lastState: {}
       name: backup
-      ready: true
+      ready: false
       resources: {}
       restartCount: 0
-      started: true
+      started: false
       state:
-        running:
+        terminated:
+          containerID: containerd://9e4eb1deec3db6461411346bd5be9defcf44011305347bc2650cbc4f05a5cc19
+          exitCode: 0
+          finishedAt: "2026-09-23T04:00:15Z"
+          reason: Completed
           startedAt: "2026-09-23T04:00:02Z"
       user:
         linux:
@@ -510,13 +335,188 @@ items:
     hostIPs:
     - ip: 172.25.152.90
     observedGeneration: 1
-    phase: Running
+    phase: Succeeded
     podIP: 172.25.152.90
     podIPs:
     - ip: 172.25.152.90
     qosClass: BestEffort
     resources: {}
     startTime: "2026-09-23T04:00:01Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-09-23T10:00:00Z"
+    finalizers:
+    - batch.kubernetes.io/job-tracking
+    generateName: cluster-backup-to-git-29835960-
+    generation: 1
+    labels:
+      batch.kubernetes.io/controller-uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+      batch.kubernetes.io/job-name: cluster-backup-to-git-29835960
+      controller-uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+      job-name: cluster-backup-to-git-29835960
+    name: cluster-backup-to-git-29835960-bjjf7
+    namespace: ai-layer
+    ownerReferences:
+    - apiVersion: batch/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Job
+      name: cluster-backup-to-git-29835960
+      uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+    resourceVersion: "180754"
+    uid: 7bf726b9-9cc8-4616-9684-d62bb783a943
+  spec:
+    containers:
+    - command:
+      - /bin/sh
+      - /scripts/backup.sh
+      env:
+      - name: GH_USER
+        valueFrom:
+          secretKeyRef:
+            key: username
+            name: github-creds
+      - name: GH_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: token
+            name: github-creds
+      - name: GH_REPO
+        valueFrom:
+          secretKeyRef:
+            key: repo
+            name: github-creds
+      image: alpine/k8s:1.30.0
+      imagePullPolicy: IfNotPresent
+      name: backup
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /scripts
+        name: script-vol
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-msqps
+        readOnly: true
+    dnsPolicy: ClusterFirstWithHostNet
+    enableServiceLinks: true
+    hostNetwork: true
+    nodeName: nucboxk12
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: OnFailure
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: backup-sa
+    serviceAccountName: backup-sa
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - configMap:
+        defaultMode: 511
+        name: backup-script-cm
+      name: script-vol
+    - name: kube-api-access-msqps
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-23T10:00:01Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-23T10:00:01Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-23T10:00:01Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-23T10:00:01Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-23T10:00:00Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://4640770dede24dc8b7f2c37bc640349f3e559230a43f997b4193f8195eecf496
+      image: docker.io/alpine/k8s:1.30.0
+      imageID: docker.io/alpine/k8s@sha256:bd01dae02676ce4cab62fc744e43443eee5bf660054e94d3496d23bfc35d384e
+      lastState: {}
+      name: backup
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-09-23T10:00:01Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /scripts
+        name: script-vol
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-msqps
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.25.152.90
+    hostIPs:
+    - ip: 172.25.152.90
+    observedGeneration: 1
+    phase: Running
+    podIP: 172.25.152.90
+    podIPs:
+    - ip: 172.25.152.90
+    qosClass: BestEffort
+    resources: {}
+    startTime: "2026-09-23T10:00:01Z"
 - apiVersion: v1
   kind: Pod
   metadata:
@@ -2995,7 +2995,7 @@ items:
     generation: 1
     name: fjord-storage-test
     namespace: default
-    resourceVersion: "140999"
+    resourceVersion: "176916"
     uid: 561eb878-7856-43c0-835a-f1f1abb753fe
   spec:
     containers:
@@ -3073,12 +3073,12 @@ items:
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2026-09-23T03:21:21Z"
+      lastTransitionTime: "2026-09-23T09:21:35Z"
       observedGeneration: 1
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2026-09-23T03:21:21Z"
+      lastTransitionTime: "2026-09-23T09:21:35Z"
       observedGeneration: 1
       status: "True"
       type: ContainersReady
@@ -3088,24 +3088,24 @@ items:
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://9e2bddda2af5faab725466a08a5bb8ace56758b71c5f6ff33eebeeafff596292
+    - containerID: docker://dd978df8298ede1bd53b4d2cee364cdb26f5e8dcbc18ddcc4be8cb735ec05545
       image: alpine:latest
       imageID: docker-pullable://alpine@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6
       lastState:
         terminated:
-          containerID: docker://0d425e6b9f3968ca612da22cb393f559aec4669ff749cbd7ded6dc35586730ca
+          containerID: docker://80097aedc5bb4e12e4126d1f31aa87cbafe5d1775d308d562b69aa4a6eec85a6
           exitCode: 0
-          finishedAt: "2026-09-23T03:21:18Z"
+          finishedAt: "2026-09-23T09:21:33Z"
           reason: Completed
-          startedAt: "2026-09-23T02:21:18Z"
+          startedAt: "2026-09-23T08:21:33Z"
       name: writer
       ready: true
       resources: {}
-      restartCount: 35
+      restartCount: 41
       started: true
       state:
         running:
-          startedAt: "2026-09-23T03:21:21Z"
+          startedAt: "2026-09-23T09:21:35Z"
       volumeMounts:
       - mountPath: /data
         name: nvme-storage
@@ -4584,7 +4584,7 @@ items:
       kind: ReplicaSet
       name: metrics-server-6dc596dfb8
       uid: 5f6f609f-0f67-4a3a-baa0-49c0dcc6bdf8
-    resourceVersion: "144608"
+    resourceVersion: "180503"
     uid: a112e106-bbde-4853-b89f-a7210f99ae51
   spec:
     containers:
@@ -4725,23 +4725,23 @@ items:
     - allocatedResources:
         cpu: 100m
         memory: 70Mi
-      containerID: docker://096b56eefa0daacad23cc1df44b695ca86045425301941f0e340ae43ebaced82
+      containerID: docker://91b59612b3b405ae9922f754a52b15d818574e0266eecf998ab12797d4656ca9
       image: rancher/mirrored-metrics-server:v0.9.0
       imageID: docker-pullable://rancher/mirrored-metrics-server@sha256:d9862115e7c7881280d3d75ca26bda8ffc0fc213315979575bf23ce9826205c0
       lastState:
         terminated:
-          containerID: docker://096b56eefa0daacad23cc1df44b695ca86045425301941f0e340ae43ebaced82
+          containerID: docker://91b59612b3b405ae9922f754a52b15d818574e0266eecf998ab12797d4656ca9
           exitCode: 2
-          finishedAt: "2026-09-23T03:57:34Z"
+          finishedAt: "2026-09-23T09:57:29Z"
           reason: Error
-          startedAt: "2026-09-23T03:57:31Z"
+          startedAt: "2026-09-23T09:57:25Z"
       name: metrics-server
       ready: false
       resources:
         requests:
           cpu: 100m
           memory: 70Mi
-      restartCount: 428
+      restartCount: 497
       started: false
       state:
         waiting:
@@ -10116,7 +10116,7 @@ items:
       kind: DaemonSet
       name: longhorn-csi-plugin
       uid: 3ca83668-cbfb-41a8-83fe-5f0286bc98e3
-    resourceVersion: "144675"
+    resourceVersion: "180546"
     uid: 7065b85d-797c-432b-b5bd-6bf4a0e7b98b
   spec:
     affinity:
@@ -10339,14 +10339,14 @@ items:
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2026-09-23T03:04:31Z"
+      lastTransitionTime: "2026-09-23T08:48:22Z"
       message: 'containers with unready status: [node-driver-registrar longhorn-csi-plugin]'
       observedGeneration: 1
       reason: ContainersNotReady
       status: "False"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2026-09-23T03:04:31Z"
+      lastTransitionTime: "2026-09-23T08:48:22Z"
       message: 'containers with unready status: [node-driver-registrar longhorn-csi-plugin]'
       observedGeneration: 1
       reason: ContainersNotReady
@@ -10358,20 +10358,20 @@ items:
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: containerd://1beeafcc0150da88e2df07ebd493d1b66802dd49c18613f20c7e86f0aa01a3de
+    - containerID: containerd://cb2b27a17535b162b9686f2199ac53095ee0cd1e26df6d0d45bc5f5185523d80
       image: docker.io/longhornio/longhorn-manager:v1.7.0
       imageID: docker.io/longhornio/longhorn-manager@sha256:02a98fe2dce45d3bcd3a56955fa5f600f63abaf43debc2ef9a81b44ce47d5ec0
       lastState:
         terminated:
-          containerID: containerd://1beeafcc0150da88e2df07ebd493d1b66802dd49c18613f20c7e86f0aa01a3de
+          containerID: containerd://cb2b27a17535b162b9686f2199ac53095ee0cd1e26df6d0d45bc5f5185523d80
           exitCode: 1
-          finishedAt: "2026-09-23T03:58:11Z"
+          finishedAt: "2026-09-23T09:57:56Z"
           reason: Error
-          startedAt: "2026-09-23T03:58:01Z"
+          startedAt: "2026-09-23T09:57:46Z"
       name: longhorn-csi-plugin
       ready: false
       resources: {}
-      restartCount: 272
+      restartCount: 406
       started: false
       state:
         waiting:
@@ -10429,20 +10429,20 @@ items:
         name: kube-api-access-5d7gt
         readOnly: true
         recursiveReadOnly: Disabled
-    - containerID: containerd://13dc89bd56880501e079f3bca72f656cd5bc8ec4b998e696faa08df43e223e94
+    - containerID: containerd://ed444d65a55ab4d19eeff70c7b6cb27c9195d5dcf7b9096513eb4e7a6054a7ee
       image: docker.io/longhornio/csi-node-driver-registrar:v2.11.1
       imageID: docker.io/longhornio/csi-node-driver-registrar@sha256:d1a2bc3a6a05c532a02670656d8bf28ffb19851f3af7ef0d3d8413abd1f1485e
       lastState:
         terminated:
-          containerID: containerd://13dc89bd56880501e079f3bca72f656cd5bc8ec4b998e696faa08df43e223e94
+          containerID: containerd://ed444d65a55ab4d19eeff70c7b6cb27c9195d5dcf7b9096513eb4e7a6054a7ee
           exitCode: 1
-          finishedAt: "2026-09-23T03:56:05Z"
+          finishedAt: "2026-09-23T09:55:38Z"
           reason: Error
-          startedAt: "2026-09-23T03:55:35Z"
+          startedAt: "2026-09-23T09:55:08Z"
       name: node-driver-registrar
       ready: false
       resources: {}
-      restartCount: 132
+      restartCount: 196
       started: false
       state:
         waiting:
@@ -14125,7 +14125,7 @@ items:
       longhorn.io/managed-by: longhorn-manager
     name: longhorn-csi-plugin
     namespace: longhorn-system
-    resourceVersion: "139318"
+    resourceVersion: "173600"
     uid: 3ca83668-cbfb-41a8-83fe-5f0286bc98e3
   spec:
     revisionHistoryLimit: 10
@@ -25737,7 +25737,7 @@ items:
     generation: 1
     name: cluster-backup-to-git
     namespace: ai-layer
-    resourceVersion: "144849"
+    resourceVersion: "180741"
     uid: 7785d692-b30d-40c7-9c4c-4454ba7f2f2a
   spec:
     concurrencyPolicy: Allow
@@ -25797,116 +25797,12 @@ items:
     active:
     - apiVersion: batch/v1
       kind: Job
-      name: cluster-backup-to-git-29835600
+      name: cluster-backup-to-git-29835960
       namespace: ai-layer
-      resourceVersion: "144847"
-      uid: 09fd729d-3426-47b9-a8fe-b755f919f012
-    lastScheduleTime: "2026-09-23T04:00:00Z"
-    lastSuccessfulTime: "2026-09-22T22:00:18Z"
-- apiVersion: batch/v1
-  kind: Job
-  metadata:
-    annotations:
-      batch.kubernetes.io/cronjob-scheduled-timestamp: "2026-09-22T22:00:00Z"
-    creationTimestamp: "2026-09-22T22:00:00Z"
-    generation: 1
-    labels:
-      batch.kubernetes.io/controller-uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-      batch.kubernetes.io/job-name: cluster-backup-to-git-29835240
-      controller-uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-      job-name: cluster-backup-to-git-29835240
-    name: cluster-backup-to-git-29835240
-    namespace: ai-layer
-    ownerReferences:
-    - apiVersion: batch/v1
-      blockOwnerDeletion: true
-      controller: true
-      kind: CronJob
-      name: cluster-backup-to-git
-      uid: 7785d692-b30d-40c7-9c4c-4454ba7f2f2a
-    resourceVersion: "108982"
-    uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-  spec:
-    backoffLimit: 6
-    completionMode: NonIndexed
-    completions: 1
-    manualSelector: false
-    parallelism: 1
-    podReplacementPolicy: TerminatingOrFailed
-    selector:
-      matchLabels:
-        batch.kubernetes.io/controller-uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-    suspend: false
-    template:
-      metadata:
-        labels:
-          batch.kubernetes.io/controller-uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-          batch.kubernetes.io/job-name: cluster-backup-to-git-29835240
-          controller-uid: 1b273eda-981f-4645-b9fb-fd3c52abe52d
-          job-name: cluster-backup-to-git-29835240
-      spec:
-        containers:
-        - command:
-          - /bin/sh
-          - /scripts/backup.sh
-          env:
-          - name: GH_USER
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: github-creds
-          - name: GH_TOKEN
-            valueFrom:
-              secretKeyRef:
-                key: token
-                name: github-creds
-          - name: GH_REPO
-            valueFrom:
-              secretKeyRef:
-                key: repo
-                name: github-creds
-          image: alpine/k8s:1.30.0
-          imagePullPolicy: IfNotPresent
-          name: backup
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-          - mountPath: /scripts
-            name: script-vol
-        dnsPolicy: ClusterFirstWithHostNet
-        hostNetwork: true
-        restartPolicy: OnFailure
-        schedulerName: default-scheduler
-        securityContext: {}
-        serviceAccount: backup-sa
-        serviceAccountName: backup-sa
-        terminationGracePeriodSeconds: 30
-        volumes:
-        - configMap:
-            defaultMode: 511
-            name: backup-script-cm
-          name: script-vol
-  status:
-    completionTime: "2026-09-22T22:00:18Z"
-    conditions:
-    - lastProbeTime: "2026-09-22T22:00:18Z"
-      lastTransitionTime: "2026-09-22T22:00:18Z"
-      message: Reached expected number of succeeded pods
-      reason: CompletionsReached
-      status: "True"
-      type: SuccessCriteriaMet
-    - lastProbeTime: "2026-09-22T22:00:18Z"
-      lastTransitionTime: "2026-09-22T22:00:18Z"
-      message: Reached expected number of succeeded pods
-      reason: CompletionsReached
-      status: "True"
-      type: Complete
-    ready: 0
-    startTime: "2026-09-22T22:00:00Z"
-    succeeded: 1
-    terminating: 0
-    uncountedTerminatedPods: {}
+      resourceVersion: "180739"
+      uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+    lastScheduleTime: "2026-09-23T10:00:00Z"
+    lastSuccessfulTime: "2026-09-23T04:00:17Z"
 - apiVersion: batch/v1
   kind: Job
   metadata:
@@ -25928,7 +25824,7 @@ items:
       kind: CronJob
       name: cluster-backup-to-git
       uid: 7785d692-b30d-40c7-9c4c-4454ba7f2f2a
-    resourceVersion: "144863"
+    resourceVersion: "144896"
     uid: 09fd729d-3426-47b9-a8fe-b755f919f012
   spec:
     backoffLimit: 6
@@ -25992,9 +25888,113 @@ items:
             name: backup-script-cm
           name: script-vol
   status:
+    completionTime: "2026-09-23T04:00:17Z"
+    conditions:
+    - lastProbeTime: "2026-09-23T04:00:17Z"
+      lastTransitionTime: "2026-09-23T04:00:17Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: SuccessCriteriaMet
+    - lastProbeTime: "2026-09-23T04:00:17Z"
+      lastTransitionTime: "2026-09-23T04:00:17Z"
+      message: Reached expected number of succeeded pods
+      reason: CompletionsReached
+      status: "True"
+      type: Complete
+    ready: 0
+    startTime: "2026-09-23T04:00:00Z"
+    succeeded: 1
+    terminating: 0
+    uncountedTerminatedPods: {}
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    annotations:
+      batch.kubernetes.io/cronjob-scheduled-timestamp: "2026-09-23T10:00:00Z"
+    creationTimestamp: "2026-09-23T10:00:00Z"
+    generation: 1
+    labels:
+      batch.kubernetes.io/controller-uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+      batch.kubernetes.io/job-name: cluster-backup-to-git-29835960
+      controller-uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+      job-name: cluster-backup-to-git-29835960
+    name: cluster-backup-to-git-29835960
+    namespace: ai-layer
+    ownerReferences:
+    - apiVersion: batch/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: CronJob
+      name: cluster-backup-to-git
+      uid: 7785d692-b30d-40c7-9c4c-4454ba7f2f2a
+    resourceVersion: "180757"
+    uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+  spec:
+    backoffLimit: 6
+    completionMode: NonIndexed
+    completions: 1
+    manualSelector: false
+    parallelism: 1
+    podReplacementPolicy: TerminatingOrFailed
+    selector:
+      matchLabels:
+        batch.kubernetes.io/controller-uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+    suspend: false
+    template:
+      metadata:
+        labels:
+          batch.kubernetes.io/controller-uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+          batch.kubernetes.io/job-name: cluster-backup-to-git-29835960
+          controller-uid: b2ad1925-7884-451c-b6d7-86b70e216f9e
+          job-name: cluster-backup-to-git-29835960
+      spec:
+        containers:
+        - command:
+          - /bin/sh
+          - /scripts/backup.sh
+          env:
+          - name: GH_USER
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: github-creds
+          - name: GH_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: token
+                name: github-creds
+          - name: GH_REPO
+            valueFrom:
+              secretKeyRef:
+                key: repo
+                name: github-creds
+          image: alpine/k8s:1.30.0
+          imagePullPolicy: IfNotPresent
+          name: backup
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /scripts
+            name: script-vol
+        dnsPolicy: ClusterFirstWithHostNet
+        hostNetwork: true
+        restartPolicy: OnFailure
+        schedulerName: default-scheduler
+        securityContext: {}
+        serviceAccount: backup-sa
+        serviceAccountName: backup-sa
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - configMap:
+            defaultMode: 511
+            name: backup-script-cm
+          name: script-vol
+  status:
     active: 1
     ready: 1
-    startTime: "2026-09-23T04:00:00Z"
+    startTime: "2026-09-23T10:00:00Z"
     terminating: 0
     uncountedTerminatedPods: {}
 - apiVersion: batch/v1
